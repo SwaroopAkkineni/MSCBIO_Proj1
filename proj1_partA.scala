@@ -5,6 +5,7 @@ val panelfile = "integrated_call_samples_v3.20130502.ALL.panel" import scala.io.
 */
 import scala.io.Source
 import org.bdgenomics.adam.rdd.ADAMContext._
+import collection.JavaConverters._
 //import org.apache.spark.SparkContext
 //import org.apache.spark.SparkConf
 
@@ -17,6 +18,7 @@ import org.bdgenomics.adam.rdd.ADAMContext._
 //look at cluster performance by the amount of cores(1,2,4,8,16,32,64,100)
 //spark-shell  --master local(N) runs locally on n number of cores
   //time loop on code from bigin
+def convertAlleles(x: java.util.List[org.bdgenomics.formats.avro.GenotypeAllele] ) = { x.asScala.map(_.toString) }
 
 println("Hello World!!!!")
 println(" ------------------------------------  Part 2 --------------------------------------------------- ")
@@ -28,18 +30,24 @@ val keys = biggroups.keys
 val values = biggroups.values
 println(" ------------------------------------  Part 3 --------------------------------------------------- ")
 val people = sc.textFile(panelfile).map(_.split("\t")).map( x => (x(0), x(1)) ).filter(x => keys.toList.contains(x._2)).collect()
+
+val peopleList = people.toList
+val variantsFrom_peopleList = peopleList.map(_._1)
 println(" ------------------------------------  Part 4 --------------------------------------------------- ")
 println("Populations with more than 90 individuals: "+biggroups.size)
 println("Individuals from these populations: "+people.size)
-
-/*println(" -------------------------------------------------------------------------------------------- ")
+println(" -------------------------------------------------------------------------------------------- ")
 println(" -------------------------------------------------------------------------------------------- ")
 println(" ------------------------------------  Section 3 --------------------------------------------------- ")
 val data = sc.loadGenotypes("small.adam")
+println(" ////////////////////////////////////////////////////////////////////////////////////// ")
 
-val map = data.rdd.map(r => ( (r.contigName, r.sampleId) , 1) ).countByValue()//.filter(_.2 == 1)
-println("Total variants:" +map.size )
-*/
+val map = data.rdd.map(r =>   r.sampleId  ).countByValue().toList//.filter(_.1 == 554)
+//val filter = map.filter( x => variantsFrom_peopleList.contains(x._1))//.collect()
+println("Total Map:" +map.size )
+println("Total Filter:" +filter.size )
+
+
 
 /*val data = sc.loadGenotypes("small.adam")
 println(data.rdd.take(1)(0))
