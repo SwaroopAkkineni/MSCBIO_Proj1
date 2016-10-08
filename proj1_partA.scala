@@ -18,6 +18,11 @@ import collection.JavaConverters._
 //look at cluster performance by the amount of cores(1,2,4,8,16,32,64,100)
 //spark-shell  --master local(N) runs locally on n number of cores
   //time loop on code from bigin
+
+/* Sample code provided by assignment
+// data.rdd.map(r => (r.contigName,r.start, r.end, r.sampleId, convertAlleles( r.alleles))).take(1)
+*/
+
 def convertAlleles(x: java.util.List[org.bdgenomics.formats.avro.GenotypeAllele] ) = { x.asScala.map(_.toString) }
 
 println("Hello World!!!!")
@@ -31,8 +36,8 @@ val values = biggroups.values
 println(" ------------------------------------  Part 3 --------------------------------------------------- ")
 val people = sc.textFile(panelfile).map(_.split("\t")).map( x => (x(0), x(1)) ).filter(x => keys.toList.contains(x._2)).collect()
 
-val peopleList = people.toList
-val variantsFrom_peopleList = peopleList.map(_._1)
+//val peopleList = people.toList
+//val variantsFrom_peopleList = peopleList.map(_._1)
 println(" ------------------------------------  Part 4 --------------------------------------------------- ")
 println("Populations with more than 90 individuals: "+biggroups.size)
 println("Individuals from these populations: "+people.size)
@@ -42,55 +47,9 @@ println(" ------------------------------------  Section 3 ----------------------
 val data = sc.loadGenotypes("small.adam")
 println(" ////////////////////////////////////////////////////////////////////////////////////// ")
 
-val map = data.rdd.map(r =>   r.sampleId  ).countByValue().toList//.filter(_.1 == 554)
+val variants = data.rdd.map(r =>  ( r.contigName, r.start, r.end)  ).countByValue().toList
 //val filter = map.filter( x => variantsFrom_peopleList.contains(x._1))//.collect()
-println("Total Map:" +map.size )
-println("Total Filter:" +filter.size )
+println(" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
-
-
-/*val data = sc.loadGenotypes("small.adam")
-println(data.rdd.take(1)(0))
-** all we care about is { contigName,
-                          start,
-                          end, (start & end: uniquely define the variant position)
-                          sampleID,(who has this variant)
-                          alleles (what this variant is) }
-**
-
-adam-submit vcf2adam 1.10000-80000.ALL.chr1.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz small.adam
-
-
-import collection.JavaConverters._
-def convertAlleles(x: java.util.List[org.bdgenomics.formats.avro.GenotypeAllele] )= { x.asScala.map(_.toString) }
-
-data.rdd.map(r => (r.contigName,r.start, r.end, r.sampleId, convertAlleles(r.alleles))).take(1)
-//take(1) takes the top values
-
-println(" ------------------------------------  Section 3 ------------------------------------------------ ")
-
-val data = sc.loadGenotypes("small.adam")
-println("|||||||||||||||| ")
-import collection.JavaConverters._
-def convertAlleles(x: java.util.List[org.bdgenomics.formats.avro.GenotypeAllele] )= { x.asScala.map(_.toString) }
-//val mappedRDD = data.rdd.map(r => (r.contigName,r.start, r.end, r.sampleId, convertAlleles(r.alleles)))
-val mappedVariants = data.rdd.map(x => (x.sampleId) ).countByValue()//.filter((_._2 <= 1))
-
-println(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ")
-
-
-
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-//
+println("Total variants: " +variants.size )
+//println("Total Filter:" +filter.size )

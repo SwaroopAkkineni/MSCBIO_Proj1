@@ -2784,3 +2784,45 @@ java.io.IOException: Failed to delete: /private/var/folders/cb/vh6yg1815r3_jcrl4
 	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:54)
 2016-10-08 15:53:52 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 2016-10-08 15:53:53 WARN  SparkContext:66 - Use an existing SparkContext, some configuration may not take effect.
+2016-10-08 17:23:06 ERROR ShutdownHookManager:91 - Exception while deleting Spark temp dir: /private/var/folders/cb/vh6yg1815r3_jcrl436482ww0000gn/T/spark-4a7fc401-f3d8-4337-a5d8-88ecb8c2535f
+java.io.IOException: Failed to delete: /private/var/folders/cb/vh6yg1815r3_jcrl436482ww0000gn/T/spark-4a7fc401-f3d8-4337-a5d8-88ecb8c2535f
+	at org.apache.spark.util.Utils$.deleteRecursively(Utils.scala:986)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1$$anonfun$apply$mcV$sp$3.apply(ShutdownHookManager.scala:64)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1$$anonfun$apply$mcV$sp$3.apply(ShutdownHookManager.scala:61)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1.apply$mcV$sp(ShutdownHookManager.scala:61)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:215)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply$mcV$sp(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1857)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply$mcV$sp(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:187)
+	at scala.util.Try$.apply(Try.scala:192)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:177)
+	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:54)
+2016-10-08 17:23:06 ERROR ShutdownHookManager:91 - Exception while deleting Spark temp dir: /private/var/folders/cb/vh6yg1815r3_jcrl436482ww0000gn/T/spark-4a7fc401-f3d8-4337-a5d8-88ecb8c2535f/repl-926d99d0-18b6-4a6f-a996-413e8598b2c4
+java.io.IOException: Failed to delete: /private/var/folders/cb/vh6yg1815r3_jcrl436482ww0000gn/T/spark-4a7fc401-f3d8-4337-a5d8-88ecb8c2535f/repl-926d99d0-18b6-4a6f-a996-413e8598b2c4
+	at org.apache.spark.util.Utils$.deleteRecursively(Utils.scala:986)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1$$anonfun$apply$mcV$sp$3.apply(ShutdownHookManager.scala:64)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1$$anonfun$apply$mcV$sp$3.apply(ShutdownHookManager.scala:61)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1.apply$mcV$sp(ShutdownHookManager.scala:61)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:215)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply$mcV$sp(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1857)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply$mcV$sp(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:187)
+	at scala.util.Try$.apply(Try.scala:192)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:177)
+	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:54)
+2016-10-08 17:23:19 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-10-08 17:23:20 WARN  SparkContext:66 - Use an existing SparkContext, some configuration may not take effect.
