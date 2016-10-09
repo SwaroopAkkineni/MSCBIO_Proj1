@@ -43,13 +43,14 @@ println("Populations with more than 90 individuals: "+biggroups.size)
 println("Individuals from these populations: "+people.size)
 println(" -------------------------------------------------------------------------------------------- ")
 println(" -------------------------------------------------------------------------------------------- ")
-println(" ------------------------------------  Section 3 --------------------------------------------------- ")
+println(" ------------------------------------  Section 3a --------------------------------------------------- ")
 val data = sc.loadGenotypes("small.adam")
 println(" ////////////////////////////////////////////////////////////////////////////////////// ")
 
-val variants = data.rdd.map(r =>  ( r.contigName, r.start, r.end)  ).countByValue().toList
-//val filter = map.filter( x => variantsFrom_peopleList.contains(x._1))//.collect()
+val varients = data.rdd.map(r =>  ( r.contigName, r.start, r.end)  ).countByValue()
+val filter = varients.filter(_._2 == 2504).toList
 println(" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 println("Total variants: " +variants.size )
-//println("Total Filter:" +filter.size )
+println("Total Filter: " +filter.size )
+println(" ------------------------------------  Section 3b --------------------------------------------------- ")

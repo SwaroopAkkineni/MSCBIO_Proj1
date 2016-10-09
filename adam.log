@@ -2826,3 +2826,98 @@ java.io.IOException: Failed to delete: /private/var/folders/cb/vh6yg1815r3_jcrl4
 	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:54)
 2016-10-08 17:23:19 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 2016-10-08 17:23:20 WARN  SparkContext:66 - Use an existing SparkContext, some configuration may not take effect.
+2016-10-08 19:06:23 WARN  HeartbeatReceiver:66 - Removing executor driver with no recent heartbeats: 1007505 ms exceeds timeout 120000 ms
+2016-10-08 19:06:23 ERROR TaskSchedulerImpl:70 - Lost executor driver on localhost: Executor heartbeat timed out after 1007505 ms
+2016-10-08 19:06:23 WARN  SparkContext:66 - Killing executors is only supported in coarse-grained mode
+2016-10-08 20:11:06 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerStageCompleted(org.apache.spark.scheduler.StageInfo@74e0ed5f)
+2016-10-08 20:11:06 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerJobEnd(107,1475971866432,JobFailed(org.apache.spark.SparkException: Job 107 cancelled because SparkContext was shut down))
+2016-10-08 20:11:08 ERROR TaskContextImpl:91 - Error in TaskCompletionListener
+java.lang.IllegalStateException: Block broadcast_285 not found
+	at org.apache.spark.storage.BlockInfoManager$$anonfun$1.apply(BlockInfoManager.scala:288)
+	at org.apache.spark.storage.BlockInfoManager$$anonfun$1.apply(BlockInfoManager.scala:288)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.storage.BlockInfoManager.unlock(BlockInfoManager.scala:287)
+	at org.apache.spark.storage.BlockManager.releaseLock(BlockManager.scala:628)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$org$apache$spark$broadcast$TorrentBroadcast$$releaseLock$1.apply(TorrentBroadcast.scala:210)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$org$apache$spark$broadcast$TorrentBroadcast$$releaseLock$1.apply(TorrentBroadcast.scala:210)
+	at org.apache.spark.TaskContext$$anon$1.onTaskCompletion(TaskContext.scala:123)
+	at org.apache.spark.TaskContextImpl$$anonfun$markTaskCompleted$1.apply(TaskContextImpl.scala:97)
+	at org.apache.spark.TaskContextImpl$$anonfun$markTaskCompleted$1.apply(TaskContextImpl.scala:95)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)
+	at org.apache.spark.TaskContextImpl.markTaskCompleted(TaskContextImpl.scala:95)
+	at org.apache.spark.scheduler.Task.run(Task.scala:98)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:274)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-08 20:11:08 ERROR TaskContextImpl:91 - Error in TaskCompletionListener
+java.lang.IllegalStateException: Block broadcast_286 not found
+	at org.apache.spark.storage.BlockInfoManager$$anonfun$1.apply(BlockInfoManager.scala:288)
+	at org.apache.spark.storage.BlockInfoManager$$anonfun$1.apply(BlockInfoManager.scala:288)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.storage.BlockInfoManager.unlock(BlockInfoManager.scala:287)
+	at org.apache.spark.storage.BlockManager.releaseLock(BlockManager.scala:628)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$org$apache$spark$broadcast$TorrentBroadcast$$releaseLock$1.apply(TorrentBroadcast.scala:210)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$org$apache$spark$broadcast$TorrentBroadcast$$releaseLock$1.apply(TorrentBroadcast.scala:210)
+	at org.apache.spark.TaskContext$$anon$1.onTaskCompletion(TaskContext.scala:123)
+	at org.apache.spark.TaskContextImpl$$anonfun$markTaskCompleted$1.apply(TaskContextImpl.scala:97)
+	at org.apache.spark.TaskContextImpl$$anonfun$markTaskCompleted$1.apply(TaskContextImpl.scala:95)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)
+	at org.apache.spark.TaskContextImpl.markTaskCompleted(TaskContextImpl.scala:95)
+	at org.apache.spark.scheduler.Task.run(Task.scala:98)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:274)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-08 20:11:08 ERROR Executor:91 - Exception in task 0.0 in stage 178.0 (TID 286)
+java.util.NoSuchElementException: None.get
+	at scala.None$.get(Option.scala:347)
+	at scala.None$.get(Option.scala:345)
+	at org.apache.spark.storage.BlockInfoManager.releaseAllLocksForTask(BlockInfoManager.scala:343)
+	at org.apache.spark.storage.BlockManager.releaseAllLocksForTask(BlockManager.scala:644)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:281)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-08 20:11:11 WARN  NettyRpcEnv:66 - RpcEnv already stopped.
+2016-10-08 20:11:55 ERROR ShutdownHookManager:91 - Exception while deleting Spark temp dir: /private/var/folders/cb/vh6yg1815r3_jcrl436482ww0000gn/T/spark-7ffe2bc5-c293-4f95-91f8-8e6ef26e0f01/repl-f23f360a-4b98-463e-b797-5225718a9639
+java.io.IOException: Failed to delete: /private/var/folders/cb/vh6yg1815r3_jcrl436482ww0000gn/T/spark-7ffe2bc5-c293-4f95-91f8-8e6ef26e0f01/repl-f23f360a-4b98-463e-b797-5225718a9639
+	at org.apache.spark.util.Utils$.deleteRecursively(Utils.scala:986)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1$$anonfun$apply$mcV$sp$3.apply(ShutdownHookManager.scala:64)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1$$anonfun$apply$mcV$sp$3.apply(ShutdownHookManager.scala:61)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)
+	at org.apache.spark.util.ShutdownHookManager$$anonfun$1.apply$mcV$sp(ShutdownHookManager.scala:61)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:215)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply$mcV$sp(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1857)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply$mcV$sp(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:187)
+	at scala.util.Try$.apply(Try.scala:192)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:187)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:177)
+	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:54)
+2016-10-08 20:26:52 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-10-08 20:26:53 WARN  SparkContext:66 - Use an existing SparkContext, some configuration may not take effect.
+2016-10-08 21:46:47 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-10-08 21:46:48 WARN  SparkContext:66 - Use an existing SparkContext, some configuration may not take effect.
+2016-10-08 21:47:25 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerExecutorMetricsUpdate(driver,WrappedArray((119,74,0,Vector(AccumulableInfo(4246,Some(internal.metrics.executorDeserializeTime),Some(0),None,true,true,None), AccumulableInfo(4247,Some(internal.metrics.executorRunTime),Some(0),None,true,true,None), AccumulableInfo(4248,Some(internal.metrics.resultSize),Some(0),None,true,true,None), AccumulableInfo(4249,Some(internal.metrics.jvmGCTime),Some(159739),None,true,true,None), AccumulableInfo(4250,Some(internal.metrics.resultSerializationTime),Some(0),None,true,true,None), AccumulableInfo(4251,Some(internal.metrics.memoryBytesSpilled),Some(384984361),None,true,true,None), AccumulableInfo(4252,Some(internal.metrics.diskBytesSpilled),Some(18098056),None,true,true,None), AccumulableInfo(4253,Some(internal.metrics.peakExecutionMemory),Some(384984361),None,true,true,None), AccumulableInfo(4254,Some(internal.metrics.updatedBlockStatuses),Some(ArrayBuffer()),None,true,true,None), AccumulableInfo(4255,Some(internal.metrics.shuffle.read.remoteBlocksFetched),Some(0),None,true,true,None), AccumulableInfo(4256,Some(internal.metrics.shuffle.read.localBlocksFetched),Some(1),None,true,true,None), AccumulableInfo(4257,Some(internal.metrics.shuffle.read.remoteBytesRead),Some(0),None,true,true,None), AccumulableInfo(4258,Some(internal.metrics.shuffle.read.localBytesRead),Some(18381710),None,true,true,None), AccumulableInfo(4259,Some(internal.metrics.shuffle.read.fetchWaitTime),Some(0),None,true,true,None), AccumulableInfo(4260,Some(internal.metrics.shuffle.read.recordsRead),Some(1384423),None,true,true,None), AccumulableInfo(4261,Some(internal.metrics.shuffle.write.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4262,Some(internal.metrics.shuffle.write.recordsWritten),Some(0),None,true,true,None), AccumulableInfo(4263,Some(internal.metrics.shuffle.write.writeTime),Some(0),None,true,true,None), AccumulableInfo(4264,Some(internal.metrics.input.bytesRead),Some(0),None,true,true,None), AccumulableInfo(4265,Some(internal.metrics.input.recordsRead),Some(0),None,true,true,None), AccumulableInfo(4266,Some(internal.metrics.output.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4267,Some(internal.metrics.output.recordsWritten),Some(0),None,true,true,None)))))
+2016-10-08 21:47:29 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerStageCompleted(org.apache.spark.scheduler.StageInfo@51de6c94)
+2016-10-08 21:47:35 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerExecutorMetricsUpdate(driver,WrappedArray((119,74,0,Vector(AccumulableInfo(4246,Some(internal.metrics.executorDeserializeTime),Some(0),None,true,true,None), AccumulableInfo(4247,Some(internal.metrics.executorRunTime),Some(0),None,true,true,None), AccumulableInfo(4248,Some(internal.metrics.resultSize),Some(0),None,true,true,None), AccumulableInfo(4249,Some(internal.metrics.jvmGCTime),Some(168173),None,true,true,None), AccumulableInfo(4250,Some(internal.metrics.resultSerializationTime),Some(0),None,true,true,None), AccumulableInfo(4251,Some(internal.metrics.memoryBytesSpilled),Some(384984361),None,true,true,None), AccumulableInfo(4252,Some(internal.metrics.diskBytesSpilled),Some(18098056),None,true,true,None), AccumulableInfo(4253,Some(internal.metrics.peakExecutionMemory),Some(384984361),None,true,true,None), AccumulableInfo(4254,Some(internal.metrics.updatedBlockStatuses),Some(ArrayBuffer()),None,true,true,None), AccumulableInfo(4255,Some(internal.metrics.shuffle.read.remoteBlocksFetched),Some(0),None,true,true,None), AccumulableInfo(4256,Some(internal.metrics.shuffle.read.localBlocksFetched),Some(1),None,true,true,None), AccumulableInfo(4257,Some(internal.metrics.shuffle.read.remoteBytesRead),Some(0),None,true,true,None), AccumulableInfo(4258,Some(internal.metrics.shuffle.read.localBytesRead),Some(18381710),None,true,true,None), AccumulableInfo(4259,Some(internal.metrics.shuffle.read.fetchWaitTime),Some(0),None,true,true,None), AccumulableInfo(4260,Some(internal.metrics.shuffle.read.recordsRead),Some(1384423),None,true,true,None), AccumulableInfo(4261,Some(internal.metrics.shuffle.write.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4262,Some(internal.metrics.shuffle.write.recordsWritten),Some(0),None,true,true,None), AccumulableInfo(4263,Some(internal.metrics.shuffle.write.writeTime),Some(0),None,true,true,None), AccumulableInfo(4264,Some(internal.metrics.input.bytesRead),Some(0),None,true,true,None), AccumulableInfo(4265,Some(internal.metrics.input.recordsRead),Some(0),None,true,true,None), AccumulableInfo(4266,Some(internal.metrics.output.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4267,Some(internal.metrics.output.recordsWritten),Some(0),None,true,true,None)))))
+2016-10-08 21:47:41 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerJobEnd(44,1475977655739,JobFailed(org.apache.spark.SparkException: Job 44 cancelled because SparkContext was shut down))
+2016-10-08 21:47:44 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerExecutorMetricsUpdate(driver,WrappedArray((119,74,0,Vector(AccumulableInfo(4246,Some(internal.metrics.executorDeserializeTime),Some(0),None,true,true,None), AccumulableInfo(4247,Some(internal.metrics.executorRunTime),Some(0),None,true,true,None), AccumulableInfo(4248,Some(internal.metrics.resultSize),Some(0),None,true,true,None), AccumulableInfo(4249,Some(internal.metrics.jvmGCTime),Some(179711),None,true,true,None), AccumulableInfo(4250,Some(internal.metrics.resultSerializationTime),Some(0),None,true,true,None), AccumulableInfo(4251,Some(internal.metrics.memoryBytesSpilled),Some(384984361),None,true,true,None), AccumulableInfo(4252,Some(internal.metrics.diskBytesSpilled),Some(18098056),None,true,true,None), AccumulableInfo(4253,Some(internal.metrics.peakExecutionMemory),Some(384984361),None,true,true,None), AccumulableInfo(4254,Some(internal.metrics.updatedBlockStatuses),Some(ArrayBuffer()),None,true,true,None), AccumulableInfo(4255,Some(internal.metrics.shuffle.read.remoteBlocksFetched),Some(0),None,true,true,None), AccumulableInfo(4256,Some(internal.metrics.shuffle.read.localBlocksFetched),Some(1),None,true,true,None), AccumulableInfo(4257,Some(internal.metrics.shuffle.read.remoteBytesRead),Some(0),None,true,true,None), AccumulableInfo(4258,Some(internal.metrics.shuffle.read.localBytesRead),Some(18381710),None,true,true,None), AccumulableInfo(4259,Some(internal.metrics.shuffle.read.fetchWaitTime),Some(0),None,true,true,None), AccumulableInfo(4260,Some(internal.metrics.shuffle.read.recordsRead),Some(1384423),None,true,true,None), AccumulableInfo(4261,Some(internal.metrics.shuffle.write.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4262,Some(internal.metrics.shuffle.write.recordsWritten),Some(0),None,true,true,None), AccumulableInfo(4263,Some(internal.metrics.shuffle.write.writeTime),Some(0),None,true,true,None), AccumulableInfo(4264,Some(internal.metrics.input.bytesRead),Some(0),None,true,true,None), AccumulableInfo(4265,Some(internal.metrics.input.recordsRead),Some(0),None,true,true,None), AccumulableInfo(4266,Some(internal.metrics.output.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4267,Some(internal.metrics.output.recordsWritten),Some(0),None,true,true,None)))))
+2016-10-08 21:47:57 ERROR LiveListenerBus:70 - SparkListenerBus has already stopped! Dropping event SparkListenerExecutorMetricsUpdate(driver,WrappedArray((119,74,0,Vector(AccumulableInfo(4246,Some(internal.metrics.executorDeserializeTime),Some(0),None,true,true,None), AccumulableInfo(4247,Some(internal.metrics.executorRunTime),Some(0),None,true,true,None), AccumulableInfo(4248,Some(internal.metrics.resultSize),Some(0),None,true,true,None), AccumulableInfo(4249,Some(internal.metrics.jvmGCTime),Some(189489),None,true,true,None), AccumulableInfo(4250,Some(internal.metrics.resultSerializationTime),Some(0),None,true,true,None), AccumulableInfo(4251,Some(internal.metrics.memoryBytesSpilled),Some(384984361),None,true,true,None), AccumulableInfo(4252,Some(internal.metrics.diskBytesSpilled),Some(18098056),None,true,true,None), AccumulableInfo(4253,Some(internal.metrics.peakExecutionMemory),Some(384984361),None,true,true,None), AccumulableInfo(4254,Some(internal.metrics.updatedBlockStatuses),Some(ArrayBuffer()),None,true,true,None), AccumulableInfo(4255,Some(internal.metrics.shuffle.read.remoteBlocksFetched),Some(0),None,true,true,None), AccumulableInfo(4256,Some(internal.metrics.shuffle.read.localBlocksFetched),Some(1),None,true,true,None), AccumulableInfo(4257,Some(internal.metrics.shuffle.read.remoteBytesRead),Some(0),None,true,true,None), AccumulableInfo(4258,Some(internal.metrics.shuffle.read.localBytesRead),Some(18381710),None,true,true,None), AccumulableInfo(4259,Some(internal.metrics.shuffle.read.fetchWaitTime),Some(0),None,true,true,None), AccumulableInfo(4260,Some(internal.metrics.shuffle.read.recordsRead),Some(1384423),None,true,true,None), AccumulableInfo(4261,Some(internal.metrics.shuffle.write.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4262,Some(internal.metrics.shuffle.write.recordsWritten),Some(0),None,true,true,None), AccumulableInfo(4263,Some(internal.metrics.shuffle.write.writeTime),Some(0),None,true,true,None), AccumulableInfo(4264,Some(internal.metrics.input.bytesRead),Some(0),None,true,true,None), AccumulableInfo(4265,Some(internal.metrics.input.recordsRead),Some(0),None,true,true,None), AccumulableInfo(4266,Some(internal.metrics.output.bytesWritten),Some(0),None,true,true,None), AccumulableInfo(4267,Some(internal.metrics.output.recordsWritten),Some(0),None,true,true,None)))))
+2016-10-08 21:48:21 ERROR Utils:91 - Uncaught exception in thread driver-heartbeater
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+2016-10-08 21:48:28 WARN  TaskMemoryManager:381 - leak 5.0 MB memory from org.apache.spark.util.collection.ExternalAppendOnlyMap@1f1c908f
+2016-10-08 21:48:28 ERROR Executor:91 - Exception in task 0.0 in stage 74.0 (TID 119)
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+2016-10-08 21:48:28 ERROR SparkUncaughtExceptionHandler:91 - [Container in shutdown] Uncaught exception in thread Thread[Executor task launch worker-11,5,main]
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+2016-10-08 21:50:50 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-10-08 21:50:51 WARN  SparkContext:66 - Use an existing SparkContext, some configuration may not take effect.
