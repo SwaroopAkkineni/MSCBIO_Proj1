@@ -44,13 +44,41 @@ println("Individuals from these populations: "+people.size)
 println(" -------------------------------------------------------------------------------------------- ")
 println(" -------------------------------------------------------------------------------------------- ")
 println(" ------------------------------------  Section 3a --------------------------------------------------- ")
-val data = sc.loadGenotypes("small.adam")
+val adam = sc.loadGenotypes("small.adam")
 println(" ////////////////////////////////////////////////////////////////////////////////////// ")
 
-val varients = data.rdd.map(r =>  ( r.contigName, r.start, r.end)  ).countByValue()
+val varients = adam.rdd.map(r =>  ( r.contigName, r.start, r.end)  ).countByValue()
 val filter = varients.filter(_._2 == 2504).toList
 println(" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
-println("Total variants: " +variants.size )
+println("Total variants: " +varients.size )
 println("Total Filter: " +filter.size )
 println(" ------------------------------------  Section 3b --------------------------------------------------- ")
+
+val peeps = people.map(_._1)
+var vectorList : List[(String, Array[Double])]= List();
+
+for(individual <- peeps){
+  val tuple = (individual, Array[Double](filter.size))
+  val tupleList = List(tuple)
+  vectorList = vectorList ++ tupleList
+}
+
+println("Size of vectorList: " + vectorList.size)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
