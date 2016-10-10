@@ -23,7 +23,17 @@ import collection.JavaConverters._
 // data.rdd.map(r => (r.contigName,r.start, r.end, r.sampleId, convertAlleles( r.alleles))).take(1)
 */
 
-def convertAlleles(x: java.util.List[org.bdgenomics.formats.avro.GenotypeAllele] ) = { x.asScala.map(_.toString) }
+def convertAlleles(x: java.util.List[org.bdgenomics.formats.avro.GenotypeAllele] ) : Int =
+{
+    val bob = x.asScala.map(_.toString)
+    if(bob(0) == "Alt" && bob(1) == "Alt"){
+      return 2
+    }
+    else if(bob(0) == "Ref" && bob(1) == "Ref"){
+      return 0
+    }
+    return 1
+}
 
 println("Hello World!!!!")
 println(" ------------------------------------  Part 2 --------------------------------------------------- ")
@@ -47,32 +57,23 @@ println(" ------------------------------------  Section 3a ---------------------
 val adam = sc.loadGenotypes("small.adam")
 println(" ////////////////////////////////////////////////////////////////////////////////////// ")
 
-val varients = adam.rdd.map(r =>  ( r.contigName, r.start, r.end)  ).countByValue()
-val filter = varients.filter(_._2 == 2504).toList
-println(" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+//val = adam.rdd.map(r => (r.contigName,r.start, r.end, r.sampleId, convertAlleles( r.alleles)))
 
-println("Total variants: " +varients.size )
-println("Total Filter: " +filter.size )
-println(" ------------------------------------  Section 3b --------------------------------------------------- ")
+val rawAdamData = adam.rdd.map(r =>  ( r.contigName, r.start, r.end, r.sampleId, convertAlleles(r.alleles)))
 
-val peeps = people.map(_._1)
-var vectorList : List[(String, Array[Double])]= List();
+val varients = rawAdamData.map( r => ( r._2, r._3)).countByValue.filter(_._2 == 2504).map(_._1).toList
+val varients_RDD_1 = sc.parallelize(varients).map(r => (r._1) )
+val varients_RDD_2 = sc.parallelize(varients).map(r => (r._2) )
+//varients_RDD_2.foreach(println)
 
-for(individual <- peeps){
-  val tuple = (individual, Array[Double](filter.size))
-  val tupleList = List(tuple)
-  vectorList = vectorList ++ tupleList
-}
-
-println("Size of vectorList: " + vectorList.size)
+val data = rawAdamData.filter( r => r._2 != varients_RDD_1 && r._3 != varients_RDD_2 )
+//val take = data.take(1)
 
 
 
-
-
-
-
-
+//val varList : List[(String, java.lang.Long, java.lang.Long, String, scala.collection.mutable.Buffer[String])] = rawData.collect().toList
+//val varients = adam.rdd.map(r =>  ( r.contigName, r.start, r.end, r.sampleId )  ).countByValue()
+//val filter = varients.filter(_._2 == 2504).toList
 
 
 
